@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<htmL>
+    <head>
+        <title>
+            Epical ADVENTURE!!!!
+        </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <audio id="background-music" autoplay loop>
+            <source src="mainTheme.mp3" type="audio/mpeg">
+        </audio>
+        <button onclick="playMusic()">Start Music</button>
+        <button onclick="toggleMusic()">Mute/Unmute</button>
+
+        <h1> MINT'S EPIC ADVENTURE </h1>
+        <div id="story">
+            <p id="story-text">It's another day at the University of Montana! What do you wanna do today?</p>
+            <div id="story-image"><img src="./imgs/campus.jpg" width="500"></div>
+            <div id="choices">
+            <button onclick="makeChoice('Go to Class')">Go to Class</button>
+            <button onclick="makeChoice('Skip School')">Skip School</button>
+            <button onclick="makeChoice('Go to A Concert')">Go to A Concert!!!</button>
+            <br>
+            </div>
+        </div>
+        <script>
+            function playMusic() {
+                let music = document.getElementById("background-music");
+                music.play();
+            }
+
+            function toggleMusic() {
+                let music = document.getElementById("background-music");
+                if (music.paused) {
+                    music.play();
+                } else {
+                    music.pause();
+                }
+            }
+
+            function makeChoice(choice) {
+            let storyText = document.getElementById("story-text");
+            let choicesDiv = document.getElementById("choices");
+            let storyImage = document.getElementById("story-image");
+            choicesDiv.innerHTML = "";
+
+            if (choice == "Go to Class") {
+                storyText.innerHTML = "You go to Class, but it's kind of boring. What do you do?";
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Stay in class\')">Stay in Class</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Go to A Concert\')">Go to A Concert</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Skip School\')">Skip School</button>';
+                storyImage.innerHTML = '<img src="./imgs/school.jpg" width="500">';
+
+            } else if (choice == "Stay in class") {
+                storyText.innerHTML = "You chose to stay in class. Lucky for you, the teacher brought cupcakes! Everyone is so happy! ";
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'eat\')">Eat a Cupcake!</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Skip School\')">Eh, I do not like cupcakes imma skip.</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Go to A Concert\')">Oh hey look, a concert!</button>';
+                storyImage.innerHTML = '<img src="./imgs/cupcakes.webp" width="500">';
+
+            } else if (choice == "Skip School") {
+                storyText.innerHTML = "You decide to skip class! The possibilities are endless!! What are you gonna do instead?";
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Go to Class\')">Actually, I should go to class.</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Go to A Concert\')">Go to A Concert</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Go get a bite at the Lodge\')">Eat at the Lodge</button>';
+                storyImage.innerHTML = '<img src="./imgs/skipSchool.webp" width="500">';
+
+            } else if (choice == "Go to A Concert") {
+                storyText.innerHTML = "You go to a fancy pantsy concert!!! However, you have no IDEA who is playing!";
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Go to Class\')">Aw, who cares! Class is better.</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Skip School\')">Actually, I wonder what else there is to do!</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Secret\')">Wait to see...</button>';
+                storyImage.innerHTML = '<img src="./imgs/concert.jpg" width="500">';
+
+            } else if (choice == "Secret") {
+                storyText.innerHTML = "Holy fishpaste! It's Bad Bunny!!! THIS IS THE BEST DAY EVER!!! What do you do?";
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'flirt\')">Flirt with him.</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Go to Class\')">Oh NO! I have to get to class!</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Skip School\')">I wonder what else I can do on campus...</button>';
+                storyImage.innerHTML = '<img src="./imgs/theWolf.jpg" width="500">';
+
+            } else if (choice == "Go get a bite at the Lodge") {
+                storyText.innerHTML = "Oh no, you ran into your sleep paralysis demons (your ex-situationships) at the Lodge! Bad deal. This sucks they are talking about you. What do you do"
+                storyImage.innerHTML = '<img src="./imgs/spDemons.jpg" width="500">';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Go to Class\')">Screw this imma go to class!</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'Go to A Concert\')">Imma go to a concert to get over my feelings!!</button>';
+                choicesDiv.innerHTML += '<button onclick="makeChoice(\'LUNA SNOW\')">Time to put on a show!';
+
+            } else if (choice == "eat") {
+                storyText.innerHTML = "HAHAHAHAHAHAHAHA the cupcake was poisoned because your normal nice teacher was actually EVIL WITCH TEACHER!!!!! Bad deal. Start over."
+                storyImage.innerHTML = '<img src="./imgs/witch.jpg" width="500">';
+
+            } else if (choice == "flirt") {
+                storyText.innerHTML = "OH MY GLOB BAD BUNNY ASKED YOU TO MARRY HIM!!!! AND YOURE SAYING YES!!!! YAYYYY BEST ENDING EVER!!!!"
+                storyImage.innerHTML = '<img src="./imgs/goodEnding.png" width="500">';
+            } else if (choice == "LUNA SNOW") {
+                storyText.innerHTML = "You turned into Luna Snow! All the girls are girling girling all the girls are oh god he used to play Marvel Rivals everything reminds me of him I'm sorry I can't finish the game waaaaaaaaahhhh"
+                storyImage.innerHTML = '<img src="./imgs/luna.avif" width="500">';
+            }
+
+
+            }
+        </script>
+    </body>
+</htmL>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Own Adventure</title>
+    <link rel="stylesheet" href="chatstyle.css">
+</head>
+<body>
+    <h1>Choose Your Own Adventure</h1>
+    <div id="story">
+        <p id="story-text">You find yourself at a crossroads in a dark forest. Do you go left or right?</p>
+        <button onclick="makeChoice('left')">Go Left</button>
+        <button onclick="makeChoice('right')">Go Right</button>
+    </div>
+    <script>
+        function makeChoice(choice) {
+            let storyText = document.getElementById("story-text");
+            let newButtons = "";
+            
+            if (choice === "left") {
+                storyText.innerHTML = "You encounter a friendly elf who offers you a magical map. Do you accept?";
+                newButtons += '<button onclick="makeChoice(\'accept\')">Accept</button>';
+                newButtons += '<button onclick="makeChoice(\'decline\')">Decline</button>';
+            } else if (choice === "right") {
+                storyText.innerHTML = "You stumble upon a hidden treasure chest. Do you open it?";
+                newButtons += '<button onclick="makeChoice(\'open\')">Open</button>';
+                newButtons += '<button onclick="makeChoice(\'leave\')">Leave</button>';
+            } else if (choice === "accept") {
+                storyText.innerHTML = "The map leads you to a grand adventure! You win!";
+            } else if (choice === "decline") {
+                storyText.innerHTML = "You wander aimlessly and eventually get lost. Try again!";
+            } else if (choice === "open") {
+                let gold = 100;
+                let gems = 50;
+                let treasure = "Inside the chest, you find " + (gold + gems) + " gold pieces worth of treasure! You win!";
+                storyText.innerHTML = treasure;
+            } else if (choice === "leave") {
+                storyText.innerHTML = "You walk away, never knowing what was inside. The mystery haunts you forever. Try again!";
+            }
+            
+            document.getElementById("story").innerHTML += newButtons;
+        }
+    </script>
+</body>
+</html>
