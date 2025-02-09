@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Story</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        #story { font-size: 1.2em; margin: 20px; }
+        img { width: 300px; height: auto; display: block; margin: 10px auto; }
+        #input-box { padding: 5px; font-size: 1em; }
+        #submit-btn { padding: 10px; font-size: 1em; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>Choose Your Own Adventure</h1>
+    <p id="story">You are driving down a dirt road heading nowhere in particular. You come to a T in the road. Which way do you go? Left or Right?</p>
+    <img id="story-image" src="./chatassets/road.jpg" alt="Road">
+
+    <input type="text" id="input-box" placeholder="Type your choice...">
+    <button id="submit-btn">Submit</button>
+
+    <script>
+        function handleInput() {
+            let choice = document.getElementById("input-box").value.toLowerCase();
+            let storyText = document.getElementById("story");
+            let storyImage = document.getElementById("story-image");
+
+            switch (choice) {
+                case "left":
+                    storyText.innerText = "You go to the Left and find a quaint restaurant where you decide to stop and eat. You get some delicious chicken fried steak.";
+                    storyImage.src = "./chatassets/road.jpg";
+                    break;
+                case "right":
+                    storyText.innerText = "You go to the right and drive for hours, only to run out of fuel in the middle of nowhere. You're lost and unsure what to do next.";
+                    storyImage.src = "./chatassets/road.jpg";
+                    break;
+                case "straight":
+                    storyText.innerText = "You decide to go straight, even though there’s no clear road. You end up on a hidden trail leading to an abandoned cabin.";
+                    storyImage.src = "./chatassets/road.jpg";
+                    break;
+                case "turn around":
+                    storyText.innerText = "You turn around and head back the way you came, only to realize you're now driving in circles. The road seems different somehow.";
+                    storyImage.src = "./chatassets/road.jpg";
+                    break;
+                case "stop":
+                    storyText.innerText = "You decide to stop and get out of the car. Suddenly, you hear rustling in the bushes. Something is watching you...";
+                    storyImage.src = "./chatassets/road.jpg";
+                    break;
+                default:
+                    storyText.innerText = "That choice doesn't seem to be an option. Try again!";
+                    break;
+            }
+
+            // Ask the user if they want to restart
+            setTimeout(() => {
+                let restart = confirm("Do you want to start over?");
+                if (restart) {
+                    location.reload();
+                }
+            }, 3000);
+        }
+
+        document.getElementById("submit-btn").addEventListener("click", handleInput);
+    </script>
+
+</body>
+</html>

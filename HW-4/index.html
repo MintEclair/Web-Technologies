@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Pick Your Attribute!
+        </title>
+        <style>
+            body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+            #story { font-size: 1.2em; margin: 20px; }
+            img { width: 300px; height: auto; display: block; margin: 10px auto; }
+            #input-box { padding: 5px; font-size: 1em; }
+            #submit-btn { padding: 10px; font-size: 1em; cursor: pointer; }
+        </style>
+    </head>
+    <body>
+        <h1 id="header">
+            Select Your Attribute
+        </h1>
+            <p id="story">
+                You stAnd in front of an altar. You must now choosE an attribuTe tHat resonatEs with youR soul.<br>
+                They Are:<br><br>
+                Water<br>
+                Fire<br>
+                Air<br>
+                Earth<br>
+            </p>
+            <img id="story-image" src="./imgs/alchemy.jpg" alt="Alchemy Symbol">
+            <input type="text" id="input-box" placeholder="Type your choice...">
+            <button id="submit-btn">Submit</button>
+
+            <script>
+                function handleInput() {
+                    let choice = document.getElementById("input-box").value.toLowerCase();
+                    let storyText = document.getElementById("story");
+                    let storyImage = document.getElementById("story-image");
+                    let header = document.getElementById("header");
+
+                    let styles = {
+                    "water": { color: "#4A90E2", font: "Georgia, serif" },
+                    "fire": { color: "#E25822", font: "Impact, sans-serif" },
+                    "air": { color: "#A0D8EF", font: "Verdana, sans-serif" },
+                    "earth": { color: "#8B5E3C", font: "Courier New, monospace" },
+                    "aether": { color: "#D4A5E2", font: "Tahoma, sans-serif" },
+                    "default": { color: "#333333", font: "Arial, sans-serif" }
+                    };
+
+                    switch (choice) {
+                        case "water":
+                        storyText.innerText = "Your spirit resonates with water. Liquid takes the shape of its container, and like you, embraces change. Remember to continue the flow rather than remain still.";
+                        storyImage.src = "./imgs/water.jpg";
+                        header.innerText = "Water"
+                        break;
+                        
+                        case "fire":
+                        storyText.innerText = "Your spirit resonates with fire. You seek to conquer and fuel your desires. Remember, do not let yourself consume too much lest you lose control.";
+                        storyImage.src = "./imgs/fire.jpg";
+                        header.innerText = "Fire";
+                        break;
+
+                        case "air":
+                        storyText.innerText = "Your spirit resonates with air. You exist around everything. Remember, be gentle like the breeze instead of letting winds ravage everything round you.";
+                        storyImage.src = "./imgs/air.jpg";
+                        header.innerText = "Air";
+                        break;
+
+                        case "earth":
+                        storyText.innerText = "Your spirit resonates with earth. Stability and grounding yourself in reality are key to this element. Mountains may form, but shaking things up is necessary.";
+                        storyImage.src = "./imgs/earth.jpg";
+                        header.innerText = "Earth";
+                        break;
+
+                        case "aether":
+                        storyText.innerText = "Your spirit resonates with Aether. You exist outside of earthly conventions and desire for ascension. However, flying too close to the sun will melt your wings.";
+                        storyImage.src = "./imgs/aether.webp";
+                        header.innerText = "Aether: The Hidden Element";
+                        break;
+
+                        default:
+                        storyText.innerText = "Hmm...I don't think that element has been researched yet. However, you know your heart and your journey. Make sure to practice mindfulness and your powers will grow.";
+                        storyImage.src = "./imgs/stars.jpg";
+                        header.innerText = "A New Possibility";
+                        choice = "default";
+                        break;
+
+                    }
+
+                    document.body.style.backgroundColor = styles[choice].color;
+                    document.body.style.fontFamily = styles[choice].font;
+
+                        
+                        setTimeout(() => {
+                        let restart = confirm("Do you wish to resonate with another element?");
+                        if (restart) {
+                        location.reload();
+                        }
+                        }, 6000);
+
+                    }               
+
+            
+                document.getElementById("submit-btn").addEventListener("click", handleInput);
+            </script>
+        </body>
+</html>
