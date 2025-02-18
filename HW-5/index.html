@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bad Bunny Matching Game!</title>
+        <style>
+            body { font-family: 'Times New Roman', Times, serif; text-align: center; }
+            .grid { display: grid; grid-template-columns: repeat(4, 200px); gap: 10px; justify-content: center; }
+            .card { 
+                width: 200px; 
+                height: 300px; 
+                border: 2px solid rgb(255, 150, 230); 
+                cursor: pointer; 
+                background-size: cover; 
+                background-position: center; 
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Bad Bunny Matching Game!</h1>
+        <div class="grid" id="gameBoard"></div>
+        <p>Attempts: <span id="attempts">0</span></p>
+        <script>
+            const blankImage = './imgs/badBunnyLogo.webp';
+            const images = ['./imgs/badBunny1.jpg', './imgs/badBunny2.webp', './imgs/badBunny3.jpg', './imgs/badBunny4.jpg', './imgs/badBunny5.webp', './imgs/badBunny6.jpg'];
+            let actualImages = [...images, ...images]; 
+            actualImages.sort(() => Math.random() - 0.5); 
+
+            let revealedCards = [];
+            let matchedCards = [];
+            let attempts = 0;
+            let boardLocked = false; // Prevents clicking during check
+
+            function createBoard() {
+                const board = document.getElementById('gameBoard');
+                for (let i = 0; i < actualImages.length; i++) {
+                    let card = document.createElement('div');
+                    card.classList.add('card');
+                    card.dataset.index = i;
+                    card.style.backgroundImage = `url(${blankImage})`;
+                    card.addEventListener('click', () => revealCard(i, card));
+                    board.appendChild(card);
+                }
+            }
+
+            function revealCard(index, card) {
+                if (boardLocked || revealedCards.length === 2 || matchedCards.includes(index)) return;
+
+                card.style.backgroundImage = `url(${actualImages[index]})`;
+                revealedCards.push({ index, card });
+
+                if (revealedCards.length === 2) {
+                    boardLocked = true;
+                    attempts++;
+                    document.getElementById('attempts').textContent = attempts;
+                    setTimeout(checkMatch, 1000);
+                }
+            }
+
+            function checkMatch() {
+                let [first, second] = revealedCards;
+
+                if (actualImages[first.index] === actualImages[second.index]) {
+                    matchedCards.push(first.index, second.index);
+                } else {
+                    first.card.style.backgroundImage = `url(${blankImage})`;
+                    second.card.style.backgroundImage = `url(${blankImage})`;
+                }
+
+                revealedCards = [];
+                boardLocked = false;
+
+                if (matchedCards.length === actualImages.length) {
+                    localStorage.setItem('attempts', attempts);
+                    setTimeout(() => window.location.href = 'index.html', 1000);
+                }
+            }
+
+            createBoard();
+        </script>
+    </body>
+</html>
