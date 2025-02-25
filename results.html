@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Results</title>
+    <style>
+        body { font-family: 'Times New Roman', Times, serif; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Game Over!</h1>
+    <p id="results"></p>
+    <button onclick="restartGame()">Play Again</button>
+
+    <script>
+        //retrieves the player data from JSON and converts it back into a Javascript object
+        const playerData = JSON.parse(localStorage.getItem("playerData"));
+
+        //when player data is found, displays name, age, and attempts.
+        if (playerData) {
+            document.getElementById("results").innerHTML = `
+                Name: ${playerData.firstName} ${playerData.lastName} <br>
+                Age: ${playerData.age} <br>
+                Attempts: ${playerData.attempts}
+            `;
+        }
+
+        //clears player data from local storage and restarts from the form.
+        function restartGame() {
+            localStorage.removeItem("playerData");
+            window.location.href = "./index.html";
+        }
+    </script>
+</body>
+</html>

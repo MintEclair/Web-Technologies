@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bad Bunny Matching Game!</title>
+        <style>
+            body { font-family: 'Times New Roman', Times, serif; text-align: center; }
+            .grid { display: grid; grid-template-columns: repeat(4, 200px); gap: 10px; justify-content: center; }
+            .card { 
+                width: 200px; 
+                height: 300px; 
+                border: 2px solid rgb(255, 150, 230); 
+                cursor: pointer; 
+                background-size: cover; 
+                background-position: center; 
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Bad Bunny Matching Game!</h1>
+        <div class="grid" id="gameBoard"></div>
+        <p>Attempts: <span id="attempts">0</span></p>
+        <script>
+            const blankImage = './imgs/badBunnyLogo.webp';
+            //array containing all my images to draw from
+            const images = ['./imgs/badBunny1.jpg', './imgs/badBunny2.webp', './imgs/badBunny3.jpg', './imgs/badBunny4.jpg', './imgs/badBunny5.webp', './imgs/badBunny6.jpg'];
+            //creates a duplicate pair of images
+            let actualImages = [...images, ...images];
+            //randomizes card order 
+            actualImages.sort(() => Math.random() - 0.5); 
+
+            //holds flipped cards
+            let revealedCards = [];
+            //keeps track of matched pairs
+            let matchedCards = [];
+            //counts how many attempts
+            let attempts = 0;
+            //board lock feature so the player doesn't click on cards too fast
+            let boardLocked = false; 
+
+            function createBoard() {
+                //finds and creates within gameBoard container
+                const board = document.getElementById('gameBoard');
+                //formula loop where the game begins! It assigns a div class for each card, and lets the inital card image be the blank image from earlier
+                for (let i = 0; i < actualImages.length; i++) {
+                    let card = document.createElement('div');
+                    card.classList.add('card');
+                    card.dataset.index = i;
+                    card.style.backgroundImage = `url(${blankImage})`;
+                    card.addEventListener('click', () => revealCard(i, card));
+                    board.appendChild(card);
+                }
+            }
+
+            function revealCard(index, card) {
+                //locks the board so system can check if cards match together
+                if (boardLocked || revealedCards.length === 2 || matchedCards.includes(index)) return;
+
+                //reveals the card
+                card.style.backgroundImage = `url(${actualImages[index]})`;
+                revealedCards.push({ index, card });
+
+                //locks the board and adds to attempts.
+                if (revealedCards.length === 2) {
+                    boardLocked = true;
+                    attempts++;
+                    document.getElementById('attempts').textContent = attempts;
+                    setTimeout(checkMatch, 1000);
+                }
+            }
+
+            //this function is what checks the math to see if the cards match.
+            function checkMatch() {
+                let [first, second] = revealedCards;
+
+                //pushes the cards that match and adds to a matched card index.
+                if (actualImages[first.index] === actualImages[second.index]) {
+                    matchedCards.push(first.index, second.index);
+                } 
+                //resets the cards if they don't match.
+                else {
+                     first.card.style.backgroundImage = `url(${blankImage})`;
+                     second.card.style.backgroundImage = `url(${blankImage})`;
+                }
+
+                //clears revealed cards and unlocks the board
+                revealedCards = [];
+                boardLocked = false;
+
+                //when all the pairs are found when the matched cards.length meet actualimages.length, then JSON retrieves player data from the local storage, 
+                //updates playerData attempts from attempts made in game, and redirects to results page.
+                if (matchedCards.length === actualImages.length) {
+                    let playerData = JSON.parse(localStorage.getItem("playerData"));
+                    playerData.attempts = attempts;
+                    localStorage.setItem("playerData", JSON.stringify(playerData));
+
+                    setTimeout(() => window.location.href = "results.html", 1000);
+                }
+            }   
+
+            //initalizes the game.
+            createBoard();
+        </script>
+    </body>
+</html>

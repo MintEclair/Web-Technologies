@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Bad Bunny Matching Game!</title>
+    <style>
+        body { font-family: 'Times New Roman', Times, serif; text-align: center; }
+        form { display: inline-block; text-align: left; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Bad Bunny Matching Game!</h1>
+    <form id="playerForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" required><br><br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" required><br><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" required><br><br>
+        <button type="submit">Start Game</button>
+    </form>
+
+    <script>
+        //adds an event listener and prevents default refreshing the page.
+        document.getElementById("playerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            //retrives information inputted by the player and sets the attempts as 0.
+            const playerData = {
+                firstName: document.getElementById("firstName").value,
+                lastName: document.getElementById("lastName").value,
+                age: document.getElementById("age").value,
+                attempts: 0
+            };
+
+            //converts into a JSON string under the playerData key and puts it into localStorage for later. Then, opens the next page. The game!
+            localStorage.setItem("playerData", JSON.stringify(playerData));
+            window.location.href = "game.html";
+        });
+    </script>
+</body>
+</html>
