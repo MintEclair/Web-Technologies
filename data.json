@@ -1,0 +1,57 @@
+[
+    {
+        "Name": "Chansey",
+        "Type": "Normal",
+        "HP": 250,
+        "Attack": 5,
+        "Defense": 5, 
+        "SpecialAttack": 35, 
+        "SpecialDefense": 105,
+        "Speed": 50,
+        "BaseStatTotal": 450
+    },
+    {
+        "Name": "Totodile",
+        "Type": "Water",
+        "HP": 50,
+        "Attack": 65,
+        "Defense": 64, 
+        "SpecialAttack": 44, 
+        "SpecialDefense": 48,
+        "Speed": 43,
+        "BaseStatTotal": 314
+    },
+    {
+        "Name": "Meloetta: Aria Forme",
+        "Type": "Normal/Psychic",
+        "HP": 100,
+        "Attack": 77,
+        "Defense": 77, 
+        "SpecialAttack": 128, 
+        "SpecialDefense": 128,
+        "Speed": 90,
+        "BaseStatTotal": 600
+    },
+    {
+        "Name": "Victini",
+        "Type": "Psychic/Fire",
+        "HP": 100,
+        "Attack": 100,
+        "Defense": 100, 
+        "SpecialAttack": 100, 
+        "SpecialDefense": 100,
+        "Speed": 100,
+        "BaseStatTotal": 600
+    },
+    {
+        "Name": "Incineroar",
+        "Type": "Fire/Dark",
+        "HP": 95,
+        "Attack": 115,
+        "Defense": 90, 
+        "SpecialAttack": 80, 
+        "SpecialDefense": 90,
+        "Speed": 60,
+        "BaseStatTotal": 530
+    }
+]
