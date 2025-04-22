@@ -1,0 +1,13 @@
+../images/Santa/Idle (1).png
+../images/Santa/Idle (2).png
+../images/Santa/Idle (3).png
+../images/Santa/Idle (4).png
+../images/Santa/Idle (5).png
+../images/Santa/Idle (6).png
+../images/Santa/Idle (7).png
+../images/Santa/Idle (8).png
+../images/Santa/Idle (9).png
+../images/Santa/Idle (10).png
+../images/Santa/Idle (11).png
+../images/Santa/Idle (12).png
+../images/Santa/Idle (13).png
