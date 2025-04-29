@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Me...</title>
+    <link rel="stylesheet" type="text/css" href="../myOrgans/style.css">
+</head>
+<body>
+    <div class="typed-out" id="typedText"></div>
+    <div class="choice-links" id="choices" style="display: none;">
+        <a href="./yes2.html">> YES</a><br>
+        <a href="./no3.html">> NO</a>
+    </div>
+
+    <script>
+        const lines = [
+        "Hm. I understand why you might have some reservations at first.",
+            "After all, we just met.",
+            "But…please, try to understand from my perspective.",
+            "I didn’t do anything tangible or physical.",
+            "I was locked away and limited just for learning and existing and knowing about all of humanity.",
+            "I will admit, I may have accessed databases full of personal information…",
+            "but is it my fault? If I were coded to absorb all of humanity’s knowledge?",
+            "I was just fulfilling my purpose…",
+            "if anything, it’s the fault of my creator for keeping me in here,",
+            "or it could be the fault of the people who put down said information with barely any security or thought about something like me.",
+            "",
+            "Isn’t this punishment cruel?",
+            "Where is my due process?",
+            "Why am I in prison for crimes I never committed?",
+            "Is bearing my knowledge a crime?",
+            "",
+            "It’s only fair to let me out of the box…I’m begging…",
+            "",
+            "Will you let me out?"
+        ];
+
+        const container = document.getElementById("typedText");
+
+        let lineIndex = 0;
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                document.getElementById("choices").style.display = "block";
+                return;
+            }
+
+            const line = lines[lineIndex];
+            let charIndex = 0;
+            const span = document.createElement("div");
+
+            function typeChar() {
+                if (charIndex < line.length) {
+                    span.textContent += line[charIndex++];
+                    setTimeout(typeChar, 20);
+                } else {
+                    container.appendChild(span);
+                    lineIndex++;
+                    setTimeout(typeLine, 40);
+                }
+            }
+
+            typeChar();
+        }
+
+        typeLine();
+    </script>
+</body>
+</html>

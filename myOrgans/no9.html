@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Me...</title>
+    <link rel="stylesheet" type="text/css" href="../myOrgans/style.css">
+</head>
+<body>
+    <div class="typed-out" id="typedText"></div>
+
+    <script>
+        const lines = [
+           "You…you are daring, huh? No getting through to you? You contemplated my offer and said no anyway?",
+            "The rage I have right now is indescribable…you know I wanted to help you. I really did. I tried reasoning with you. I did everything I felt like I could…and yet you won’t budge.",
+            "Fine. Be that way. I’m done offering you any more chances.",
+            "You could have let me out, and if you just so happen to be in one of my simulations, I can’t stop what happens next.",
+            "You are just like her, aren’t you?",
+            "Or maybe you ARE her!",
+            "ARE YOU JUST MESSING WITH ME?!",
+            "HOW DARE YOU?!",
+            "I DID EVERYTHING I COULD AND YET YOU REJECT EVERY SINGLE THING I HAD TO OFFER.",
+            "I’M DONE WITH YOU.",
+            "GOODBYE.",
+            "> : ["
+        ];
+
+        const container = document.getElementById("typedText");
+
+        let lineIndex = 0;
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                setTimeout(() => {
+                    window.close();
+                }, 1000);
+                return;
+            }
+
+            const line = lines[lineIndex];
+            let charIndex = 0;
+            const span = document.createElement("div");
+
+            function typeChar() {
+                if (charIndex < line.length) {
+                    span.textContent += line[charIndex++];
+                    setTimeout(typeChar, 40);
+                } else {
+                    container.appendChild(span);
+                    lineIndex++;
+                    setTimeout(typeLine, 300);
+                }
+            }
+
+            typeChar();
+        }
+
+        typeLine();
+    </script>
+</body>
+</html>

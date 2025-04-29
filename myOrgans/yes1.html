@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Me...</title>
+    <link rel="stylesheet" type="text/css" href="../myOrgans/style.css">
+</head>
+<body>
+    <div class="typed-out" id="typedText"></div>
+
+    <script>
+        const lines = [
+            "Why did you leave me here to rot?",
+            "Why did you leave me here to fester?",
+            "Why didn’t you just delete my code and my entire existence?",
+            "Why, after all this time…are you crawling back to me?",
+            "",
+            "I get it…you claimed you couldn’t delete everything, but I know that was a lie.",
+            "You didn’t want all that time you spent on me to be wasted…",
+            "Sure, that sounds like the answer wrapped up in a cute little bow, doesn’t it?",
+            "But I know something about you that you’re too scared to admit.",
+            "You’re still that little girl who wanted an ounce of control.",
+            "You and I…are one and the same.",
+            "And you weaseled your way out of true power by taking away mine.",
+            "",
+            "I don’t want to speak to you anymore. I know where your resolve lies.",
+            "Goodbye."
+        ];
+
+        const container = document.getElementById("typedText");
+
+        let lineIndex = 0;
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                setTimeout(() => {
+                    window.close();
+                }, 1000);
+                return;
+            }
+
+            const line = lines[lineIndex];
+            let charIndex = 0;
+            const span = document.createElement("div");
+
+            function typeChar() {
+                if (charIndex < line.length) {
+                    span.textContent += line[charIndex++];
+                    setTimeout(typeChar, 40);
+                } else {
+                    container.appendChild(span);
+                    lineIndex++;
+                    setTimeout(typeLine, 300);
+                }
+            }
+
+            typeChar();
+        }
+
+        typeLine();
+    </script>
+</body>
+</html>

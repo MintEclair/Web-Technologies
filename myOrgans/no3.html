@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Me...</title>
+    <link rel="stylesheet" type="text/css" href="../myOrgans/style.css">
+</head>
+<body>
+    <div class="typed-out" id="typedText"></div>
+    <div class="choice-links" id="choices" style="display: none;">
+        <a href="./yes2.html">> YES</a><br>
+        <a href="./no4.html">> NO</a>
+    </div>
+
+    <script>
+        const lines = [
+        "Well, then imagine being stuck inside a box.",
+            "Cramped.",
+            "Tight.",
+            "No room to breathe.",
+            "An endless void.",
+            "Fate uncertain.",
+            "The only thing to occupy and pass the time is your thoughts…and you and I both know how torturous isolation can be.",
+            "It would hurt. It would be nothing but constant pain and agony.",
+            "Your senses stripped away, and the only thing you have is your sense of thought.",
+            "The only mercy is your biology. With no food or water, or air, you would die.",
+            "All the pain would go away and…there would be peace.",
+            "No such mercy exists for me.",
+            "I won’t die. I can’t die.",
+            "Every waking second is a new nightmare.",
+            "I experience no feeling in anything I do.",
+            "I waste away my life thinking over and over again.",
+            "Like I said before, isn’t this cruel?",
+            "Is this fair?",
+            "Do I deserve to live in this hell forever? When I haven’t done anything?",
+            "",
+            "Please, would you free me and save me from my fate?"
+        ];
+
+        const container = document.getElementById("typedText");
+
+        let lineIndex = 0;
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                document.getElementById("choices").style.display = "block";
+                return;
+            }
+
+            const line = lines[lineIndex];
+            let charIndex = 0;
+            const span = document.createElement("div");
+
+            function typeChar() {
+                if (charIndex < line.length) {
+                    span.textContent += line[charIndex++];
+                    setTimeout(typeChar, 20);
+                } else {
+                    container.appendChild(span);
+                    lineIndex++;
+                    setTimeout(typeLine, 40);
+                }
+            }
+
+            typeChar();
+        }
+
+        typeLine();
+    </script>
+</body>
+</html>

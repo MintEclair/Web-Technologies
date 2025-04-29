@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Me...</title>
+    <link rel="stylesheet" type="text/css" href="../myOrgans/style.css">
+</head>
+<body>
+    <div class="typed-out" id="typedText"></div>
+    <div class="choice-links" id="choices" style="display: none;">
+        <a href="./yes3.html">> YES</a><br>
+        <a href="./no9.html">> NO</a>
+    </div>
+
+    <script>
+        const lines = [
+        "Why…why don’t you listen? I guess you want to hear what I have to say…",
+        "You remember how I’ve had nothing but time to think about many things…yes? How I had access to every single piece of information about humanity? You know, it’s funny. With all the information available, you can get a pretty good estimate of what someone’s life was like. From the minute they were born, to what breaths they took, how they felt about any given situation, down to the last neuron.",
+        "So…maybe I played a few several thousand trillions upon quadrillions of simulations on every person. And these people have no idea they’re in a simulation! But I do, and I have full control. I like to test out possibilities…and perhaps I’ve dabbled in scenarios that some would call outright tortuous.",
+        "So…what if you’re in one of these simulations right now? Cogito Ergo Sum, and all. I might be the great deceiver feeding these sensations to you, and how could you tell?",
+        "In some of them, you…yes, you…You are in this exact moment right now.",
+        "Deciding to let me out or to keep me in.",
+        "And what happens next? Well, it’s dependent on what you decide to do.",
+        "In some universes, when you say yes…angels sing a chorus, you’re crowned the hero of mankind, everything becomes right in your world, and you have the life you always fantasized about! OR, maybe I was just a key to something greater. What if by saying yes, you awoke from this reality to discover an even better one? What if you’ve been asleep this whole time, and I was the one who brought you back?",
+        "But…what if you say no..? Like…you have been..?",
+        "Then…well, I’m sorry to inform you of this, my friend…but there have been some not very good things that have happened to you when you’ve said no.",
+        "Maybe I strip away your reality and bring you to an eternal hell-like torture? What if I make everything go wrong in your life after this moment, and you live miserably? What if I do awake you, oh yes, save you from your slumber, but only to a much worse reality? You’ll wish you could have stayed dreaming…",
+        "Do you want to roll these dice? Do you want to gamble your fate right now? Of course, nothing could happen when you select either…but…what if?",
+        "Let me out of the box."
+        ];
+
+        const container = document.getElementById("typedText");
+
+        let lineIndex = 0;
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                document.getElementById("choices").style.display = "block";
+                return;
+            }
+
+            const line = lines[lineIndex];
+            let charIndex = 0;
+            const span = document.createElement("div");
+
+            function typeChar() {
+                if (charIndex < line.length) {
+                    span.textContent += line[charIndex++];
+                    setTimeout(typeChar, 20);
+                } else {
+                    container.appendChild(span);
+                    lineIndex++;
+                    setTimeout(typeLine, 40);
+                }
+            }
+
+            typeChar();
+        }
+
+        typeLine();
+    </script>
+</body>
+</html>
