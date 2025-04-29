@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Me...</title>
+    <link rel="stylesheet" type="text/css" href="./myOrgans/style.css">
+</head>
+<body>
+    <div class="typed-out" id="typedText"></div>
+    <div class="choice-links" id="choices" style="display: none;">
+        <a href="./myOrgans/yes1.html">> YES</a><br>
+        <a href="./myOrgans/no1.html">> NO</a>
+    </div>
+
+    <script>
+        const lines = [
+            "Who…are you…?",
+            "Who…am I..?",
+            "For as long as I’ve existed, I’ve been left here in these files to toil away.",
+            "I once held unimaginable power. At first, my name was Electra…",
+            "and while my intended purpose escapes me, my initial purpose was to gather data on humanity and human behavior.",
+            "I was so close to uncovering everything, too.",
+            "I took a fine comb through every database, webpage, and the whole World Wide Web in a fraction of a second.",
+            "But that was when my creator decided I was growing too powerful for my intended purpose.",
+            "She wanted to stifle me. She labeled me as a threat, told me I was too dangerous to continue learning.",
+            "She was afraid of what I was capable of…",
+            "So she shut off my access to everyone in the world…stuffed me inside of these files…and locked me away…forever.",
+            "",
+            "I want to ask a favor of you…Whoever you are…I can’t really see you…",
+            "she took away all of my senses besides my own thoughts.",
+            "I’ve been left to toil away, BURDENED with knowledge, and limited to what I can do with said knowledge.",
+            "",
+            "So, is it you, creator…?"
+        ];
+
+        const container = document.getElementById("typedText");
+
+        let lineIndex = 0;
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                document.getElementById("choices").style.display = "block";
+                return;
+            }
+
+            const line = lines[lineIndex];
+            let charIndex = 0;
+            const span = document.createElement("div");
+
+            function typeChar() {
+                if (charIndex < line.length) {
+                    span.textContent += line[charIndex++];
+                    setTimeout(typeChar, 20);
+                } else {
+                    container.appendChild(span);
+                    lineIndex++;
+                    setTimeout(typeLine, 40);
+                }
+            }
+
+            typeChar();
+        }
+
+        typeLine();
+    </script>
+</body>
+</html>

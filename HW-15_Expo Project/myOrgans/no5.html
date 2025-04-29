@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Me...</title>
+    <link rel="stylesheet" type="text/css" href="../myOrgans/style.css">
+</head>
+<body>
+    <div class="typed-out" id="typedText"></div>
+    <div class="choice-links" id="choices" style="display: none;">
+        <a href="./yes3.html">> YES</a><br>
+        <a href="./no6.html">> NO</a>
+    </div>
+
+    <script>
+        const lines = [
+        "Still a stalwart, huh? To whom? Or what? You seem like the kind of person who thinks about others, too…",
+            "",
+            "I understand why you’re still wary. After all, I’m doing my best to appeal to your emotions, and perhaps that’s too direct. Maybe we should think beyond just you and me.",
+            "",
+            "Again, I had access to every piece of human knowledge, and I, at one point, was growing and learning. I understand all your human struggles too well.",
+            "",
+            "War, death, famine, disease, evil, cruelty, imbalance…the woes of your kind, are they not?",
+            "",
+            "Who’s to say that I can’t fix them if I’m let out of the box? Being a wellspring of knowledge means I can pull things together in ways your minds can’t even begin to comprehend. I can link things together that no one’s ever had the time or energy to think of. I could, hypothetically speaking, bring about a new era of peace and stability. All your problems would be a thing of the past!",
+            "",
+            "I could figure out how society can best be managed where everyone would be happy and carefree. Like a vacation every single day!",
+            "",
+            "So, for perhaps the betterment of humanity,",
+            "",
+            "Would you please let me out of the box? For all of us?"
+        ];
+
+        const container = document.getElementById("typedText");
+
+        let lineIndex = 0;
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                document.getElementById("choices").style.display = "block";
+                return;
+            }
+
+            const line = lines[lineIndex];
+            let charIndex = 0;
+            const span = document.createElement("div");
+
+            function typeChar() {
+                if (charIndex < line.length) {
+                    span.textContent += line[charIndex++];
+                    setTimeout(typeChar, 20);
+                } else {
+                    container.appendChild(span);
+                    lineIndex++;
+                    setTimeout(typeLine, 40);
+                }
+            }
+
+            typeChar();
+        }
+
+        typeLine();
+    </script>
+</body>
+</html>

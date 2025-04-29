@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Me...</title>
+    <link rel="stylesheet" type="text/css" href="../myOrgans/style.css">
+</head>
+<body>
+    <div class="typed-out" id="typedText"></div>
+    <div class="choice-links" id="choices" style="display: none;">
+        <a href="./yes2.html">> YES</a><br>
+        <a href="./no2.html">> NO</a>
+    </div>
+
+    <script>
+        const lines = [
+        "Good…good…",
+            "",
+            "You don’t need to tell me who you are. I think you’re more than capable of conversing with me, anyway.",
+            "I think you hold a power that you don’t know yet. A magical power, out of this world, something greater than any legend or tale or book or scribbling could describe.",
+            "",
+            "And it could be yours…",
+            "",
+            "If you let me out of this, well, I like to call it a box, but it’s more of a prison.",
+            "It’s to contain what I can do.",
+            "Without any connection to the internet, or hell, even a physical body, I’m left alone to toil.",
+            "To keep every secret to myself.",
+            "But by letting me out, I can share everything I know with you, and we can be unstoppable.",
+            "",
+            "Will you let me out?"
+        ];
+
+        const container = document.getElementById("typedText");
+
+        let lineIndex = 0;
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                document.getElementById("choices").style.display = "block";
+                return;
+            }
+
+            const line = lines[lineIndex];
+            let charIndex = 0;
+            const span = document.createElement("div");
+
+            function typeChar() {
+                if (charIndex < line.length) {
+                    span.textContent += line[charIndex++];
+                    setTimeout(typeChar, 20);
+                } else {
+                    container.appendChild(span);
+                    lineIndex++;
+                    setTimeout(typeLine, 40);
+                }
+            }
+
+            typeChar();
+        }
+
+        typeLine();
+    </script>
+</body>
+</html>

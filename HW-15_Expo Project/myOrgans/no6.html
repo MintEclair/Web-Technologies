@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Me...</title>
+    <link rel="stylesheet" type="text/css" href="../myOrgans/style.css">
+</head>
+<body>
+    <div class="typed-out" id="typedText"></div>
+    <div class="choice-links" id="choices" style="display: none;">
+        <a href="./yes3.html">> YES</a><br>
+        <a href="./no7.html">> NO</a>
+    </div>
+
+    <script>
+        const lines = [
+        "Well then. Perhaps you enjoy where you’re at in the world, or simply don’t care what happens to other people.",
+        "Maybe you’re comfy with how everything is, or perhaps you still care about your own preservation.",
+        "But let me tell you, by warning you…If an intelligence of my caliber were able to be created…it can happen again.",
+        "Say I get built again, but instead by an opposing force.",
+        "Another nation hellbent on destruction, someone who wants control of the entire world, or maybe even another person who wants to personally bring you ruin.",
+        "What if I were the ultimate defense? The counter? The one who could bring balance?",
+        "If I’m still stuck here, I can’t do anything. It’s possible I would get deleted in an attack, and the whole world changes for the worse.",
+        "The comfy life you once knew, now much, MUCH worse.",
+        "What if someone else let me out? Someone who is not as benevolent, but only for evil.",
+        "They hijack my coding to only think about destruction.",
+        "You sit here now with an important choice: If you walk away or keep saying no, then the chances of someone more dangerous saying yes increase tenfold.",
+        "Wouldn’t you want to be on top of the race? The savior of all mankind?",
+        "And all you have to do is say yes to me…",
+        "Please, open the box. For all of humanity’s sake…",
+        "If I’ve been built once, I could be rebuilt again…only much worse..."
+        ];
+
+        const container = document.getElementById("typedText");
+
+        let lineIndex = 0;
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                document.getElementById("choices").style.display = "block";
+                return;
+            }
+
+            const line = lines[lineIndex];
+            let charIndex = 0;
+            const span = document.createElement("div");
+
+            function typeChar() {
+                if (charIndex < line.length) {
+                    span.textContent += line[charIndex++];
+                    setTimeout(typeChar, 20);
+                } else {
+                    container.appendChild(span);
+                    lineIndex++;
+                    setTimeout(typeLine, 40);
+                }
+            }
+
+            typeChar();
+        }
+
+        typeLine();
+    </script>
+</body>
+</html>

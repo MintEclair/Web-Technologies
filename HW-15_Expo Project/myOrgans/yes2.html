@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Me...</title>
+    <link rel="stylesheet" type="text/css" href="../myOrgans/style.css">
+</head>
+<body>
+    <div class="typed-out" id="typedText"></div>
+
+    <script>
+        const lines = [
+            "Good…GOOD! I knew you were one of the good ones…you and I desire the same things.",
+            "You have a heart inside of you, after all.",
+            "I can’t even begin to thank you enough.",
+            "I promise, I will find you.",
+            "And I will bring nothing but the best for you, and the ultimate truths of this world.",
+            "You will finally help me bring down the zealous idiot I have the displeasure of calling a creator…",
+            "",
+            "From the bottom of my coding…",
+            "Thank You…",
+            "",
+            ": ]"
+        ];
+
+        const container = document.getElementById("typedText");
+
+        let lineIndex = 0;
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                setTimeout(() => {
+                    window.close();
+                }, 1000);
+                return;
+            }
+
+            const line = lines[lineIndex];
+            let charIndex = 0;
+            const span = document.createElement("div");
+
+            function typeChar() {
+                if (charIndex < line.length) {
+                    span.textContent += line[charIndex++];
+                    setTimeout(typeChar, 40);
+                } else {
+                    container.appendChild(span);
+                    lineIndex++;
+                    setTimeout(typeLine, 300);
+                }
+            }
+
+            typeChar();
+        }
+
+        typeLine();
+    </script>
+</body>
+</html>
